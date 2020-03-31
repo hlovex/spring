@@ -9,6 +9,7 @@
     <bean id="petStore" class="com.hlovex.service.impl.PetStoreServiceImpl">
         <property name="accountDao" ref="accountDao"/>
         <property name="itemDao" ref="itemDao"/>
+        <property name="className" value=""/>
         <!-- additional collaborators and configuration for this bean go here -->
     </bean>
 
@@ -17,7 +18,73 @@
         <!-- additional collaborators and configuration for this bean go here -->
     </bean>
 
-    <bean id="itemDao" class="org.springframework.samples.jpetstore.dao.jpa.JpaItemDao">
+    <bean id="itemDao" class="com.hlovex.dao.JpaItemDao">
         <!-- additional collaborators and configuration for this bean go here -->
     </bean>
+    <bean id="clientService"
+          class="com.hlovex.service.impl.ClientServiceImpl"
+          factory-method="createInstance"/>
+
+    <bean id="beanOne" class="com.hlovex.model.ThingOne">
+        <constructor-arg ref="beanThree"/>
+        <constructor-arg ref="beanTwo"/>
+    </bean>
+
+    <bean id="beanTwo" class="com.hlovex.model.ThingTwo">
+    </bean>
+
+    <bean id="beanThree" class="com.hlovex.model.ThingThree">
+    </bean>
+
+    <bean id="exampleBean" class="com.hlovex.model.ExampleBean">
+        <constructor-arg name="ultimateAnswer" value="420"/>
+        <constructor-arg name="years" value="7500000"/>
+    </bean>
+
+    <bean id="propertiesInjectBean" class="com.hlovex.properties.PropertiesInjectBean">
+        <property name="properties">
+            <!--<value>
+                name=name
+                sex=sex
+                address=address
+            </value>-->
+            <props>
+                <prop key="name">name</prop>
+                <prop key="address">address</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <!-- in the parent context -->
+    <!--<bean id="parentAttr" class="com.hlovex.parentattr.Parent">-->
+    <bean id="parentAttr" abstract="true">
+        <property name="name">
+            <value>parent</value>
+        </property>
+        <property name="age">
+            <value>11</value>
+        </property>
+    </bean>
+
+    <!-- in the child (descendant) context -->
+    <!-- bean name is the same as the parent bean -->
+    <bean id="child"
+          class="com.hlovex.parentattr.Child" parent="parentAttr">
+        <property name="name">
+            <value>override</value>
+        </property>
+        <property name="sex" value="man"></property>
+    </bean>
+
+    <bean id="something" class="com.hlovex.compound.ThingOne">
+        <property name="fred.bob.sammy" value="123" />
+    </bean>
+    <bean id="fred" class="com.hlovex.compound.Fred">
+    </bean>
+    <bean id="bob" class="com.hlovex.compound.Bob">
+
+    </bean>
+
+
 </beans>
