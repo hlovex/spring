@@ -17,13 +17,13 @@ public class Test {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext  context = new ClassPathXmlApplicationContext("naturebean.xml");
         TestPostConstruct testPostConstruct = context.getBean(TestPostConstruct.class);
-        System.out.println("------------");
+        System.out.println("111------------");
         context.start();
-        System.out.println("------------");
+        System.out.println("222------------");
         context.refresh();
-        System.out.println("------------");
+        System.out.println("333------------");
         context.close();
-        System.out.println("------------");
+        System.out.println("444------------");
     }
 
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/lang
+        https://www.springframework.org/schema/lang/spring-lang.xsd">
+
+    <!--  <lang:groovy id="messenger"
+                   script-source="classpath:org/springframework/scripting/groovy/Messenger.groovy">
+          <lang:property name="message" value="Fiona Apple Is Just So Dreamy."/>
+      </lang:groovy>-->
+
+    <bean id="messenger" class="com.hlovex.containerextensionpoints.Messenger">
+        <property name="message" value="Fiona Apple Is Just So Dreamy."/>
+    </bean>
+
+    <!--
+    when the above bean (messenger) is instantiated, this custom
+    BeanPostProcessor implementation will output the fact to the system console
+    在实例化上述bean(Messenger)时，此自定义。BeanPostProcessor实现会将事实输出到系统控制台
+    -->
+    <bean class="com.hlovex.containerextensionpoints.InstantiationTracingBeanPostProcessor"/>
+
+</beans>

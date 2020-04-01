@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--当加上abstract="true" 时候不同实例化TestBean对象，否则报错
+    如果有其他bean设置了parent属性，parent="inheritedTestBean"，则其他bean必须包含当前bean的所有属性-->
+    <bean id="inheritedTestBean" abstract="true"
+          class="com.hlovex.beandefinitioninheritance.TestBean">
+        <property name="name" value="parent"/>
+        <property name="age" value="1"/>
+    </bean>
+
+    <bean id="inheritsWithDifferentClass"
+          class="com.hlovex.beandefinitioninheritance.DerivedTestBean"
+          parent="inheritedTestBean" init-method="initialize">
+        <property name="name" value="override"/>
+        <!-- the age property value of 1 will be inherited from parent -->
+    </bean>
+
+</beans>
