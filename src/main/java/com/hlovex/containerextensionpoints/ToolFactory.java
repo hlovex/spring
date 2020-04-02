@@ -2,6 +2,9 @@ package com.hlovex.containerextensionpoints;
 
 import org.springframework.beans.factory.FactoryBean;
 
+/**
+ * https://www.baeldung.com/spring-factorybean
+ */
 public class ToolFactory implements FactoryBean<Tool> {
 
     private Integer factoryId;
