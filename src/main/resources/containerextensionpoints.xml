@@ -16,6 +16,11 @@
         <property name="message" value="Fiona Apple Is Just So Dreamy."/>
     </bean>
 
+    <bean id="tool" class="com.hlovex.containerextensionpoints.ToolFactory">
+        <property name="factoryId" value="1"/>
+        <property name="toolId" value="1"/>
+    </bean>
+
     <!--
     when the above bean (messenger) is instantiated, this custom
     BeanPostProcessor implementation will output the fact to the system console
@@ -26,12 +31,12 @@
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations" value="classpath:jdbc.properties"/>
     </bean>
-
+<!--
     <bean id="dataSource" destroy-method="close"
           class="com.zaxxer.hikari.HikariDataSource">
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
         <property name="jdbcUrl" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
-    </bean>
+    </bean>-->
 </beans>
